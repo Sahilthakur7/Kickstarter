@@ -6,11 +6,13 @@ contract Campaign{
         uint value;
         address recepient;
         bool complete;
+        uint approvalCount;
+        mapping(address => bool) approvals;
     }
 
     address public manager;
     uint public minimumContribution;
-    address[] public approvers;
+    mapping(address => bool) public approvers;
     Request[] public requests;
 
     modifier restricted() {
@@ -26,7 +28,7 @@ contract Campaign{
     function contribute() public payable {
         require(msg.value > minimumContribution);
 
-        approvers.push(msg.sender);
+        approvers[msg.sender] = true;
     }
 
     function createRequest(string description, uint value, address recipient) public restricted {
