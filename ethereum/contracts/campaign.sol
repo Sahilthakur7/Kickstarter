@@ -17,7 +17,7 @@ contract Campaign{
     struct Request {
         string description;
         uint value;
-        address recepient;
+        address recipient;
         bool complete;
         uint approvalCount;
         mapping(address => bool) approvals;
@@ -30,7 +30,7 @@ contract Campaign{
     uint public approversCount;
 
     modifier restricted() {
-        require (msg.sender === manager);
+        require (msg.sender == manager);
         _;
     }
 
@@ -52,7 +52,7 @@ contract Campaign{
             value: value,
             recipient: recipient,
             complete: false,
-            approvalCount: 0,
+            approvalCount: 0
         });
 
         requests.push(newRequest);
