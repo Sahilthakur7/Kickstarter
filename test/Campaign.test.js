@@ -24,8 +24,8 @@ beforeEach(async() => {
         gas: '1000000'
     });
 
-   [campaignAddress] = await getDeployedCampaigns().call();
-    campaing = await new web3.eth.Contract(JSON.parse(compiledCampaign.interface), campaignAddress);
+   [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
+    campaign = await new web3.eth.Contract(JSON.parse(compiledCampaign.interface), campaignAddress);
 
 
 });
@@ -33,6 +33,6 @@ beforeEach(async() => {
 describe('Campaigns', () => {
     it('both the contracts were deployed' , () => {
         assert.ok(factory.options.address);
-        assert.ok(campagin.options.address);
+        assert.ok(campaign.options.address);
     })
 })
