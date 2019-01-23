@@ -52,7 +52,7 @@ describe('Campaigns', () => {
     it('allows a manager to make a payment request', async() => {
         await campaign.methods.createRequest('Buy batteries', '1000', accounts[1]).send({from: accounts[0], gas: '1000000'});
 
-        const request = await campaign.mathods.requests(0);
+        const request = await campaign.methods.requests(0);
     })
 
     it('processes requests', async () => {
